@@ -47,9 +47,6 @@ name: 'Terraform'
 on:
   push:
     branches: [ master ]
-    paths:
-      - trigger.txt
-      - ruby.tar.gz
 
 jobs:
   terraform:
