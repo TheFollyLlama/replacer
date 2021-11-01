@@ -7,10 +7,14 @@ jobs:
   build:
     runs-on: ubuntu-latest
     steps:
-    - uses: actions/checkout@master
+    #- run: tar -cvf ruby.tar.gz ruby
     - name: Archive Release
       uses: thedoctor0/zip-release@master
       with:
         type: 'tar'
         filename: 'ruby.tar.gz'
         path: 'ruby'
+    - uses: actions/upload-artifact@v2.2.4
+      with:
+        name: ruby
+        path: ruby.tar.gz
