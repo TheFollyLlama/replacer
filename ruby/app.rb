@@ -10,7 +10,6 @@ get '/' do
 end
 
 get '/replace/:input' do |input|
-  puts input
   replacer(input)
 end
 
@@ -20,7 +19,7 @@ post '/replace' do
 end
 
 def replacer(input)
-  replace_words = ['Amazon','Deloitte','Google','Microsoft','Oracle']
+  replace_words = ['Amazon','Deloitte','Google','Google Cloud','Microsoft','Oracle']
   replace_words.push(replace_words.map{|x| x.downcase }).flatten!
   for word in replace_words
     if input[word]

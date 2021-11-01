@@ -17,7 +17,13 @@ done
 export APP_NAME="${APP_NAME:-replacement-butter}"
 CREATE_TOKEN="${CREATE_TOKEN:-false}"
 
-#heroku login
+heroku whoami
+LOGGED_IN=$?
+
+if [[ $LOGGED_IN != "0" ]]; then
+  heroku login
+fi
+
 EMAIL=$(heroku whoami)
 if [[ "${CREATE_TOKEN}" == "true" ]]; then
   AUTH=$(heroku authorizations:create --description $APP_NAME)

@@ -1,6 +1,5 @@
 To run locally:
 
-
 Requiements:
  - Ruby >=2.7
  - bundler
