@@ -17,7 +17,7 @@ done
 export APP_NAME="${APP_NAME:-replacement-butter}"
 CREATE_TOKEN="${CREATE_TOKEN:-false}"
 
-heroku login
+#heroku login
 EMAIL=$(heroku whoami)
 if [[ "${CREATE_TOKEN}" == "true" ]]; then
   AUTH=$(heroku authorizations:create --description $APP_NAME)
@@ -30,6 +30,5 @@ fi
 export HEROKU_API_KEY=$TOKEN
 export HEROKU_EMAIL=$EMAIL
 terraform init
+terraform plan -var app_name=$APP_NAME
 terraform apply -var app_name=$APP_NAME
-terraform plan -var app_name=$APP_NAME -out=current.tfplan
-terraform apply current.tfplan
