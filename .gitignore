@@ -2,6 +2,5 @@ ruby/vendor
 ruby/.bundle
 ruby/.git
 
-terraform-heroku/terraform
 terraform-heroku/.terraform
 terraform-heroku/current.tfplan

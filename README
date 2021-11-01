@@ -1,0 +1,14 @@
+Simple API text replacer
+
+CI Stack:
+ github-action
+ terraform
+ heroku
+ ruby/sinatra
+
+Currently running on heroku:
+  curl replacement-butter.herokuapp.com
+  browser: replacement-butter.herokuapp.com/replace/Google mostly harmless Amazon chicken nuggets Deloitte and stuff and things
+  curl -X POST -d '{"input":"Google chicken nuggets Amazon mostly harmless Deloitte and stuff and things"}' replacement-butter.herokuapp.com/replace
+
+I took this as an opportunity to learn github-actions, and heroku.

@@ -22,7 +22,8 @@ resource "heroku_build" "default" {
   app        = heroku_app.default.name
   buildpacks = ["https://github.com/heroku/heroku-buildpack-ruby"]
   source {
-    url  = "https://github.com/TheFollyLlama/replacer/raw/master/ruby.tar.gz"
+    path = ../ruby
+  #  url  = "https://github.com/TheFollyLlama/replacer/raw/master/ruby.tar.gz"
   }
 }
 
