@@ -54,7 +54,9 @@ jobs:
   terraform:
     name: 'Terraform'
     runs-on: ubuntu-latest
-    #environment: production
+    env:
+      working-directory: terraform-heroku
+      app_name: replacement-butter
 
     # Use the Bash shell regardless whether the GitHub Actions runner is ubuntu-latest, macos-latest, or windows-latest
     defaults:
@@ -74,18 +76,17 @@ jobs:
 
     # Initialize a new or existing Terraform working directory by creating initial files, loading any remote state, downloading modules, etc.
     - name: Terraform Init
-      run: terraform init  terraform-heroku/main.tf
-
-    # Checks that all Terraform configuration files adhere to a canonical format
-    - name: Terraform Format
-      run: terraform fmt -check
+      run: terraform init
+      working-directory: ${{env.working-directory}}
 
     # Generates an execution plan for Terraform
     - name: Terraform Plan
-      run: terraform plan -var app_name=$APP_NAME terraform-heroku/main.tf
+      run: terraform plan -var app_name=${{env.app_name}}
+      working-directory: ${{env.working-directory}}
 
       # On push to master, build or change infrastructure according to Terraform configuration files
       # Note: It is recommended to set up a required "strict" status check in your repository for "Terraform Cloud". See the documentation on "strict" required status checks for more information: https://help.github.com/en/github/administering-a-repository/types-of-required-status-checks
     - name: Terraform Apply
       if: github.ref == 'refs/heads/master' && github.event_name == 'push'
-      run: terraform apply  terraform-heroku/main.tf # -auto-approve
+      run: terraform apply -var app_name=${{env.app_name}} # -auto-approve
+      working-directory: ${{env.working-directory}}

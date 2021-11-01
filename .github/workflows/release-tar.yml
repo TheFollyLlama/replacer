@@ -1,5 +1,5 @@
 
-name: Create Archive
+name: Tar and archive
 on:
   push:
     branches: [ master ]
@@ -7,13 +7,13 @@ jobs:
   build:
     runs-on: ubuntu-latest
     steps:
-    #- run: tar -cvf ruby.tar.gz ruby
+    # Checkout the repository to the GitHub Actions runner
+    - name: Checkout
+      uses: actions/checkout@v2
+
     - name: Archive Release
-      uses: thedoctor0/zip-release@master
-      with:
-        type: 'tar'
-        filename: 'ruby.tar.gz'
-        path: 'ruby'
+      run: tar -cvf ruby.tar.gz ruby
+
     - uses: actions/upload-artifact@v2.2.4
       with:
         name: ruby
